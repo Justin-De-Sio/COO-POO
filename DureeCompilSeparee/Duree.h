@@ -1,18 +1,21 @@
 #ifndef DUREE_H
 #define DUREE_H
 
-namespace nsUtil {
-    typedef unsigned short US ;
-    typedef unsigned long UL ;
+namespace nsUtil
+{
+    typedef unsigned short US;
+    typedef unsigned long UL;
 
-    class Duree{
+    class Duree
+    {
 
     public:
-    Duree(const UL duree);
-    void display(void) const;
-    UL getDuree(void) const;
-    void incr(const UL delta = UL (0));
-    void decr(const UL delta = UL (0));
+        Duree(const UL duree);
+        void display(void) const;
+        UL getDuree(void) const;
+        void incr(const UL delta = UL(0));
+        void decr(const UL delta = UL(0));
+
     private:
         void normaliser(void);
 
@@ -21,10 +24,7 @@ namespace nsUtil {
         US myMinutes;
         US myHours;
         UL myDays;
-
     };
 }
-
-
 
 #endif // DUREE_H

@@ -20,7 +20,7 @@ private:
 class Prof
 {
 public:
-    Prof(const string &name = string() );
+    Prof(const string &name = string());
     void display() const;
     void addModule(Module *module);
     string getName() const;
@@ -119,91 +119,92 @@ void testModuleProf()
         cout << endl;
     }
     for (unsigned i(0); i < 5; ++i)
-        {
-            delete profs [i];
-            // on aurait pu faire une boucle spécifique pour la ligne qui suit
-            delete modules [i];
-        }
+    {
+        delete profs[i];
+        // on aurait pu faire une boucle spécifique pour la ligne qui suit
+        delete modules[i];
+    }
 }
 
-void testModuleProfV2 (void)
-   {
-       vector <Module> modules;
-       modules.resize(5);
+void testModuleProfV2(void)
+{
+    vector<Module> modules;
+    modules.resize(5);
 
-       vector <Prof>   profs;
-       profs.resize(5);
+    vector<Prof> profs;
+    profs.resize(5);
 
-       // Création des modules
+    // Création des modules
 
-       for (unsigned i (0); i < 5; ++i)
-       {
-           string module;
-           cout << "Veuillez saisir un nom de Module : (pas d'espace dans le nom)" << endl;
-           cin >> module;
-           modules [i] = module;
-       }
-       // Création des profs
+    for (unsigned i(0); i < 5; ++i)
+    {
+        string module;
+        cout << "Veuillez saisir un nom de Module : (pas d'espace dans le nom)" << endl;
+        cin >> module;
+        modules[i] = module;
+    }
+    // Création des profs
 
-       for (unsigned i (0); i < 5; ++i)
-       {
-           string prof;
-           cout << "Veuillez saisir un nom de Prof : (pas d'espace dans le nom)" << endl;
-           cin >> prof;
-           profs [i] = prof;
-       }
+    for (unsigned i(0); i < 5; ++i)
+    {
+        string prof;
+        cout << "Veuillez saisir un nom de Prof : (pas d'espace dans le nom)" << endl;
+        cin >> prof;
+        profs[i] = prof;
+    }
 
-       // création des associations, attention si un prof est lié
-       // à un module, ce module doit être lié à ce prof
-       // Le prof 0 sera lié à tous les modules, le 1 à tous sauf le premier ...
+    // création des associations, attention si un prof est lié
+    // à un module, ce module doit être lié à ce prof
+    // Le prof 0 sera lié à tous les modules, le 1 à tous sauf le premier ...
 
-       for (unsigned numProf (0); numProf < profs.size (); ++numProf)
-       {
-           for (unsigned numModule (numProf); numModule < modules.size (); ++numModule)
-           {
-               profs   [numProf]   .addModule  (&modules [numModule]);
-               modules [numModule].addProf    (&profs   [numProf]);
-           }
-       }
+    for (unsigned numProf(0); numProf < profs.size(); ++numProf)
+    {
+        for (unsigned numModule(numProf); numModule < modules.size(); ++numModule)
+        {
+            profs[numProf].addModule(&modules[numModule]);
+            modules[numModule].addProf(&profs[numProf]);
+        }
+    }
 
-       // affichages des profs avec leur modules assiciés
+    // affichages des profs avec leur modules assiciés
 
-       for (const Prof & prof : profs)
-       {
-           cout << "Nom de professeur : " << prof.getName () << endl;
-           cout << "Liste des modules associés :" << endl;
-           prof.display ();
-           cout << endl;
-       }
+    for (const Prof &prof : profs)
+    {
+        cout << "Nom de professeur : " << prof.getName() << endl;
+        cout << "Liste des modules associés :" << endl;
+        prof.display();
+        cout << endl;
+    }
 
-       // affichages des modules avec leur profs assiciés
+    // affichages des modules avec leur profs assiciés
 
-       for (const Module & module : modules)
-       {
-           cout << "Nom du module : " << module.getName () << endl;
-           cout << "Liste des professeurs associés :" << endl;
-           module.display ();
-           cout << endl;
-       }
+    for (const Module &module : modules)
+    {
+        cout << "Nom du module : " << module.getName() << endl;
+        cout << "Liste des professeurs associés :" << endl;
+        module.display();
+        cout << endl;
+    }
 
-       // restitution de l'espace devenue inutile
+    // restitution de l'espace devenue inutile
 
-   } // testModuleProfV2()
+} // testModuleProfV2()
 
-void test(){
+void test()
+{
 
-     Module *m1 = new Module("maths");
-     Prof *p1 = new Prof("Justin");
-     cout << m1->getName();
-     m1->addProf(p1);
-     m1->display();
+    Module *m1 = new Module("maths");
+    Prof *p1 = new Prof("Justin");
+    cout << m1->getName();
+    m1->addProf(p1);
+    m1->display();
 }
 
 int main()
 {
     cout << "Hello World!" << endl;
-//    testModuleProf();
+    //    testModuleProf();
     testModuleProfV2();
-//    test();
+    //    test();
     return 0;
 }
